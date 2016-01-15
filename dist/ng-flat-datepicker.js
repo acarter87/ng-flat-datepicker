@@ -161,6 +161,10 @@
                     var endDay   = moment(lastDayOfMonth);
                     // NB: We use weekday() to get a locale aware weekday
                     startDay = firstDayOfMonth.weekday() === 0 ? startDay : startDay.weekday(0);
+                    // https://github.com/RemiAWE/ng-flat-datepicker/issues/9
+                    if (startDay.local().format('ddd') == 'Mon') {
+                        startDay.add(1,'days');
+                    }
                     endDay   = lastDayOfMonth.weekday()  === 6 ? endDay   : endDay.weekday(6);
 
                     var currentWeek = [];
